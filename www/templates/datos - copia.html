@@ -1,0 +1,183 @@
+<!-- Left aligned menu below button -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="custom-header mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <!-- llamada a menu desplegable -->
+                <button id="menu-lower-left"
+                        class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">more_vert</i>
+                </button>
+            </nav>
+            <div class="mdl-layout-spacer"></div>
+
+            <!-- Title -->
+            <span class="mdl-layout-title">geoFutbol</span>
+
+        </div>
+    </header>
+
+    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu"
+        for="menu-lower-left" style="height:280px; width:auto;">
+        <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" ng-click="toogleTipoPiso();">
+            Tipos de Pisos
+        </li>
+        <li class="mdl-menu__item--full-bleed-divider">
+            <ul class="demo-list-item mdl-list" ng-show="showTipoPiso">
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkTPB" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkTPB" class="mdl-checkbox__input" ng-model="pisoB" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">Baldosa</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkTPC" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkTPC" class="mdl-checkbox__input" ng-model="pisoC" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">Cemento</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkTPCN" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkTPCN" class="mdl-checkbox__input" ng-model="pisoCN" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">Césped Normal</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkTPCS" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkTPCS" class="mdl-checkbox__input" ng-model="pisoCS" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">Césped Sintético</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkTPP" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkTPP" class="mdl-checkbox__input" ng-model="pisoP" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">Parquet</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkTPT" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkTPT" class="mdl-checkbox__input" ng-model="pisoT" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">Tierra</span>
+                        </label>
+                    </span>
+                </li>
+            </ul>
+        </li>
+        <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" ng-click="toogleTipoCancha()">
+            Tipos de Cancha
+        </li>
+        <li class="mdl-menu__item--full-bleed-divider">
+            <ul class="demo-list-item mdl-list" ng-show="showTipoCancha">
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkTCA" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkTCA" class="mdl-checkbox__input" ng-model="canchaA" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">Abierta</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkTCAL" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkTCAL" class="mdl-checkbox__input" ng-model="canchaAL" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">Abierta con Luz</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkTCT" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkTCT" class="mdl-checkbox__input" ng-model="canchaT" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">Techada</span>
+                        </label>
+                    </span>
+                </li>
+            </ul>
+        </li>
+        <li class="mdl-menu__item mdl-menu__item--full-bleed-divider" ng-click="toogleCantJug()">
+            Cantidad de Jugadores
+        </li>
+        <li class="mdl-menu__item--full-bleed-divider">
+            <ul class="demo-list-item mdl-list" ng-show="showCantJug">
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkCJ5" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkCJ5" class="mdl-checkbox__input" ng-model="j5" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">5</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkCJ6" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkCJ6" class="mdl-checkbox__input" ng-model="j6" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">6</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkCJ7" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkCJ7" class="mdl-checkbox__input" ng-model="j7" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">7</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkCJ8" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkCJ8" class="mdl-checkbox__input" ng-model="j8" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">8</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkCJ9" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkCJ9" class="mdl-checkbox__input" ng-model="j9" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">9</span>
+                        </label>
+                    </span>
+                </li>
+                <li style="padding-left: 20px;">
+                    <span class="mdl-list__item-primary-content">
+                        <label for="chkCJ11" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+                            <input type="checkbox" id="chkCJ11" class="mdl-checkbox__input" ng-model="j11" ng-change="reglasFiltro()">
+                            <span class="mdl-checkbox__label">11</span>
+                        </label>
+                    </span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <ng-map id="mapa" default-style="true" center="[-34.614901, -58.421647]" >
+
+        <marker id="m-{{x.nombre}}" position="[{{x.latitude}}, {{x.longitude}}]" title="{{x.nombre}}" ng-repeat="x in detalle" icon="/img/36x36.png" ng-click="popup('iw-{{x.nombre}}')"></marker>
+        <info-window id="iw-{{x.nombre}}" visible-on-marker="m-{{x.nombre}}" ng-repeat="x in detalle">
+        <div ng-non-bindable>
+          <div id="siteNotice"></div>
+          <h1 id="firstHeading" class="firstHeading">Uluru</h1>
+          <div id="bodyContent">
+            <p><b>Hola</b>, also referred to as <b>Ayers Rock</b>, is a large 
+            sandstone rock formation in the southern part of the 
+            Heritage Site.</p>
+            <p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">
+            http://en.wikipedia.org/w/index.php?title=Uluru</a> 
+            (last visited June 22, 2009).</p>
+          </div>
+        </div>
+      </info-window>
+    </ng-map>
+</div>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <title></title>
+
+        <!--css-->
+        <link rel="stylesheet" href="css/vendor/bootstrap.min.css">
+        <link rel="stylesheet" href="css/vendor/ngToast.min.css">
+        <link rel="stylesheet" href="css/vendor/material.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+        <!--google-->
+        <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBM2_7OR1RXgB4v_bjBU5S2XU39dR9Yqhk'></script>
+
+
+        <!--script-->
+        <script src="js/vendor/lodash.js"></script>
+        <script src="js/vendor/angular.min.js"></script>
+        <script src="js/vendor/angular-route.min.js"></script>
+        <script src="js/vendor/ng-map.min.js"></script>
+        <script src="js/vendor/angular-animate.min.js"></script>
+        <script src="js/vendor/angular-sanitize.min.js"></script>
+        <script src="js/vendor/ngToast.min.js"></script>
+        <script src="js/vendor/material.js"></script>
+
+        <!--asset-->
+        <script src="js/asset/app.js"></script>
+
+        <style>
+            .ng-map-info-window {
+                background-color: navy;
+                color: #fff;
+            }
+            .ng-map-info-window div:first-child > div:nth-child(1) {
+                border-top-color: navy !important;
+            }
+            .ng-map-info-window div:first-child > div:nth-child(3) div {
+                background-color: transparent !important;
+            }
+            .ng-map-info-window div:first-child > div:nth-child(4) {
+                background-color: transparent !important;
+            }
+        </style>
+    </head>
+
+    <body ng-app="starter" ng-controller="geoCtrl">
+        <toast></toast>
+        <ng-view></ng-view>
+
+    </body>
+</html>
