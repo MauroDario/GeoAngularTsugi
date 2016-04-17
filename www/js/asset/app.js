@@ -158,7 +158,10 @@ myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScop
         var center = new google.maps.LatLng(p.latitude, p.longitude);
 
         infowindow.setContent(
-            '<h3>' + p.nombre + '</h3>');
+            "<h5>&quot;"+p.nombre+"&quot;</h5>"
+            +"<h5>&quot;"+p.direccion+"&quot;</h5>"
+            +"<h5 class='mdl-typography--text-right'>&quot;"+p.nombre+"&quot;</h5>"            
+        );
 
         infowindow.setPosition(center);
         infowindow.open($scope.objMapa);
