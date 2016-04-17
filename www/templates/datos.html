@@ -162,18 +162,9 @@
   <div ng-controller="geoCtrl as ctrl">
     <ng-map id="mapa" default-style="true" center="[-34.614901, -58.421647]">
 
-      <marker id="m-{{x.nombre}}" position="[{{x.latitude}}, {{x.longitude}}]" title="{{x.nombre}}" ng-repeat="x in detalle" icon="./img/36x36.png" on-click="map.showInfoWindow('iw');$rootScope.market=x;"></marker>
-      <info-window id="iw" visible-on-marker="">
-        <div>
-          <div id="siteNotice"></div>
-          <h1 id="firstHeading" class="firstHeading">Uluru</h1>
-          <div id="bodyContent">
-            <p><b>{{market.nombre}}</b>, also referred to as <b>Ayers Rock</b>, is a large sandstone rock formation in the southern part of the Heritage Site.</p>
-            <p>Attribution: Uluru, <a href="http://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">
-            http://en.wikipedia.org/w/index.php?title=Uluru</a> (last visited June 22, 2009).</p>
-          </div>
-        </div>
-      </info-window>
+      <marker id="m-{{x.nombre}}" position="[{{x.latitude}}, {{x.longitude}}]" title="{{x.nombre}}" ng-repeat="x in detalle" icon="./img/36x36.png" 
+      on-click="showInfoWindow(event,x)"></marker>
+      
 
     </ng-map>
   </div>
