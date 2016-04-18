@@ -159,7 +159,7 @@
             </ul>
         </li>
     </ul>
-    <div ng-controller="geoCtrl as ctrl">
+    <div >
         <ng-map id="mapa" default-style="true" center="[-34.614901, -58.421647]">
             <marker id="m-{{x.nombre}}" position="[{{x.latitude}}, {{x.longitude}}]" title="{{x.nombre}}" ng-repeat="x in detalle" icon="./img/36x36.png" on-click="showInfoWindow(event,x)"></marker>
         </ng-map>
