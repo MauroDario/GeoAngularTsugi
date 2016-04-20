@@ -161,6 +161,8 @@ myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScop
     });
 
     $scope.showInfoWindow = function (event, p) {
+        if($scope.infowindow != null)
+            $scope.infowindow.close();
         var infowindow = new google.maps.InfoWindow();
         $scope.infowindow = infowindow;
         var center = new google.maps.LatLng(p.latitude, p.longitude);
