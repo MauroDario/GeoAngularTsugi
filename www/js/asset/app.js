@@ -147,22 +147,111 @@ myApp.factory('Canchas', function ($http) {
     return Canchas;
 });
 
-myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScope,$timeout) {
-    $rootScope.$on('$viewContentLoaded', function(event) {
+myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScope, $timeout) {
+    $rootScope.$on('$viewContentLoaded', function (event) {
         componentHandler.upgradeElements(document.querySelectorAll('.mdl-layout'));
     });
 
     $scope.$on("mapInitialized", function (event, map) {
         $scope.objMapa = map;
+        google.maps.event.addListener(map, "click", function (event) {
+            if ($scope.infowindow != null)
+                $scope.infowindow.close();
+        });
     });
 
     $scope.showInfoWindow = function (event, p) {
         var infowindow = new google.maps.InfoWindow();
+        $scope.infowindow = infowindow;
         var center = new google.maps.LatLng(p.latitude, p.longitude);
+        var content = "<h5 class='greenText'>&quot;" + p.nombre + "&quot;</h5>";
+        var futbolArray = [];
+        if (p.jugadores6 == true) futbolArray.push("6");
+        if (p.jugadores7 == true) futbolArray.push("7");
+        if (p.jugadores5 == true) futbolArray.push("5");
+        if (p.jugadores8 == true) futbolArray.push("8");
+        if (p.jugadores9 == true) futbolArray.push("9");
+        if (p.jugadores11 == true) futbolArray.push("11");
 
-        infowindow.setContent(
-            "<h5>&quot;" + p.nombre + "&quot;</h5>" + "<h5>" + p.tel1 + "</h5>" + "<h5 class='mdl-typography--text-right'>" + p.direccion + "</h5>"
-        );
+        content += "<p>-Futbol: " + futbolArray.join() + "</p>";
+
+        var cespedarray = [];
+        if (p.pisoCespedS == true) cespedarray.push("Cesped Sintetico");
+        if (p.pisoCespedN == true) cespedarray.push("Cesped");
+        if (p.pisoCemento == true) cespedarray.push("Cemento");
+        if (p.pisoParquet == true) cespedarray.push("Parquet");
+        if (p.pisoBaldosa == true) cespedarray.push("Baldosa");
+        if (p.pisoTierra == true) cespedarray.push("Tierra");
+
+        if (cespedarray.length > 0)
+            content += "<p>-" + cespedarray.join("/") + "</p>";
+
+        var luzArray = [];
+        if (p.canchaAbierta == true) luzArray.push("Abierta") ;
+        if (p.canchaAbiertaLuz == true) luzArray.push("Abierta con luz");
+        if (p.canchaTechada == true) luzArray.push("Techada") ;
+
+        if (luzArray.length > 0)
+            content += "<p>-" + luzArray.join("/") + "</p>"
+
+        content += (p.tel1 != null) ? "<h6 class='greenText'>" + p.tel1 + "</h6>" : "";
+        content += (p.tel2 != null) ? "<h6 class='greenText'>" + p.tel2 + "</h6>" : "";
+        content += (p.direccion != null) ? "<h6 class='mdl-typography--text-right'>" + p.direccion + "</h6>" : "";
+
+        infowindow.setContent(content);
+
+        google.maps.event.addListener(infowindow, 'domready', function () {
+
+            // Reference to the DIV which receives the contents of the infowindow using jQuery
+            var iwOuter = $('.gm-style-iw');
+
+            /* The DIV we want to change is above the .gm-style-iw DIV.
+             * So, we use jQuery and create a iwBackground variable,
+             * and took advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+             */
+            var iwBackground = iwOuter.prev();
+
+            // saca el display inline-block
+
+            iwOuter.children().css({
+                'display': 'block'
+            });
+
+            // Remove the background shadow DIV
+            iwBackground.children(':nth-child(2)').css({
+                'display': 'none'
+            });
+
+            // Remove the white background DIV
+            iwBackground.children(':nth-child(4)').css({
+                'display': 'none'
+            });
+
+            // Taking advantage of the already established reference to
+            // div .gm-style-iw with iwOuter variable.
+            // You must set a new variable iwCloseBtn.
+            // Using the .next() method of JQuery you reference the following div to .gm-style-iw.
+            // Is this div that groups the close button elements.
+            var iwCloseBtn = iwOuter.next();
+
+            // Apply the desired effect to the close button
+            iwCloseBtn.css({
+                display: 'none',
+                closeBoxURL: ""
+            });
+            // The API automatically applies 0.7 opacity to the button after the mouseout event.
+            // This function reverses this event to the desired value.
+            iwCloseBtn.mouseout(function () {
+                $(this).css({
+                    opacity: '0',
+                    closeBoxURL: "",
+                    display: 'none',
+                });
+
+            });
+
+        });
+
 
         infowindow.setPosition(center);
         infowindow.open($scope.objMapa);
@@ -283,7 +372,7 @@ myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScop
 
         $scope.detalle = detalles;
         $scope.detalle = angular.copy($scope.detalle);
-        $timeout(function(){ }, 0);
+        $timeout(function () {}, 0);
         NgMap.getMap("mapa").then(function (map) {
             $rootScope.map = map;
 
