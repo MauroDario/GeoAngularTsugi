@@ -7348,18 +7348,18 @@ widely available.
     align-items: center;
     height: 64px;
     margin: 0;
-    padding: 0 40px 0 80px; }
+    padding: 0 40px 0 5px; }
 .mdl-layout--no-drawer-button .mdl-layout__header-row {
-    padding-left: 40px; }
+    padding-left: 5px; }
 @media screen and (min-width: 1025px) {
     .mdl-layout--no-desktop-drawer-button .mdl-layout__header-row {
-        padding-left: 40px; } }
+        padding-left: 5px; } }
 @media screen and (max-width: 1024px) {
     .mdl-layout__header-row {
         height: 56px;
-        padding: 0 16px 0 72px; }
+        padding: 0 16px 0 5px; }
     .mdl-layout--no-drawer-button .mdl-layout__header-row {
-        padding-left: 16px; } }
+        padding-left: 5px; } }
 .mdl-layout__header-row > * {
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
