@@ -175,7 +175,7 @@ myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScop
         if (p.jugadores9 == true) futbolArray.push("9");
         if (p.jugadores11 == true) futbolArray.push("11");
 
-        content += "<p>-Futbol: " + futbolArray.join() + "</p>";
+        content += "<p class='gp'>-Futbol: " + futbolArray.join() + "</p>";
 
         var cespedarray = [];
         if (p.pisoCespedS == true) cespedarray.push("Cesped Sintetico");
@@ -186,7 +186,7 @@ myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScop
         if (p.pisoTierra == true) cespedarray.push("Tierra");
 
         if (cespedarray.length > 0)
-            content += "<p>-" + cespedarray.join("/") + "</p>";
+            content += "<p class='gp'>-" + cespedarray.join("/") + "</p>";
 
         var luzArray = [];
         if (p.canchaAbierta == true) luzArray.push("Abierta") ;
@@ -194,11 +194,11 @@ myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScop
         if (p.canchaTechada == true) luzArray.push("Techada") ;
 
         if (luzArray.length > 0)
-            content += "<p>-" + luzArray.join("/") + "</p>"
+            content += "<p class='gp'>-" + luzArray.join("/") + "</p>"
 
         content += (p.tel1 != null) ? "<h6 class='greenText'>" + p.tel1 + "</h6>" : "";
         content += (p.tel2 != null) ? "<h6 class='greenText'>" + p.tel2 + "</h6>" : "";
-        content += (p.direccion != null) ? "<h6 class='mdl-typography--text-right'>" + p.direccion + "</h6>" : "";
+        content += (p.direccion != null) ? "<h5 class='mdl-typography--text-right'>" + p.direccion + "</h5>" : "";
 
         infowindow.setContent(content);
 
