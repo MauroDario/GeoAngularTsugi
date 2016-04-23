@@ -158,6 +158,10 @@ myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScop
             if ($scope.infowindow != null)
                 $scope.infowindow.close();
         });
+        
+        // Fix para height del mapa: Height total - height del nav header
+        $('#mapa').height($(window).height() - $('.mdl-layout__header-row').height());
+        google.maps.event.trigger(map, 'resize');
     });
 
     $scope.showInfoWindow = function (event, p) {
