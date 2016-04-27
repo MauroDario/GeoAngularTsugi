@@ -158,14 +158,14 @@ myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScop
             if ($scope.infowindow != null)
                 $scope.infowindow.close();
         });
-        
+
         // Fix para height del mapa: Height total - height del nav header
         $('#mapa').height($(window).height() - $('.mdl-layout__header-row').height());
         google.maps.event.trigger(map, 'resize');
     });
 
     $scope.showInfoWindow = function (event, p) {
-        if($scope.infowindow != null)
+        if ($scope.infowindow != null)
             $scope.infowindow.close();
         var infowindow = new google.maps.InfoWindow();
         $scope.infowindow = infowindow;
@@ -193,15 +193,17 @@ myApp.controller('geoCtrl', function ($scope, Canchas, ngToast, NgMap, $rootScop
             content += "<p class='gp'>-" + cespedarray.join("/") + "</p>";
 
         var luzArray = [];
-        if (p.canchaAbierta == true) luzArray.push("Abierta") ;
+        if (p.canchaAbierta == true) luzArray.push("Abierta");
         if (p.canchaAbiertaLuz == true) luzArray.push("Abierta con luz");
-        if (p.canchaTechada == true) luzArray.push("Techada") ;
+        if (p.canchaTechada == true) luzArray.push("Techada");
 
         if (luzArray.length > 0)
             content += "<p class='gp'>-" + luzArray.join("/") + "</p>"
 
-        content += (p.tel1 != null) ? "<h6 class='greenText'>" + p.tel1 + "</h6>" : "";
-        content += (p.tel2 != null) ? "<h6 class='greenText'>" + p.tel2 + "</h6>" : "";
+        content += (p.email != null) ? "<div><a class='greenText' href='mailto:" + p.email + "'>" + p.email + "</a></div>" : "";
+        content += (p.tel1 != null) ? "<div><a class='greenText' href='tel:" + p.tel1 + "'>" + p.tel1 + "</a></div>" : "";
+        content += (p.tel2 != null) ? "<div><a class='greenText' href='tel:" + p.tel2 + "'>" + p.tel1 + "</a></div>" : "";
+
         content += (p.direccion != null) ? "<h5 class='mdl-typography--text-right'>" + p.direccion + "</h5>" : "";
 
         infowindow.setContent(content);
